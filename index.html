@@ -40,6 +40,12 @@
             border-radius: 6px;
             font-size: 1rem;
             background-color: white;
+            transition: border-color 0.3s;
+        }
+        .search-box:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
         .card {
             background: white;
@@ -48,6 +54,11 @@
             margin-bottom: 20px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
         }
         .badge {
             display: inline-block;
@@ -66,9 +77,36 @@
         .card h3 { margin: 0 0 10px 0; color: #1e293b; font-size: 1.4rem; }
         .card p { margin: 0 0 15px 0; color: #64748b; }
         .meta { font-size: 0.9rem; color: #94a3b8; margin-bottom: 15px; }
-        .btn-link { display: inline-block; color: #3b82f6; text-decoration: none; font-weight: 600; }
-        .btn-link:hover { text-decoration: underline; }
-        footer { text-align: center; padding: 40px 20px; color: #94a3b8; font-size: 0.9rem; margin-top: 60px; border-top: 1px solid #e2e8f0; }
+        .btn-link { 
+            display: inline-block; 
+            color: #3b82f6; 
+            text-decoration: none; 
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .btn-link:hover { 
+            color: #1d4ed8;
+            text-decoration: underline; 
+        }
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+        footer { 
+            text-align: center; 
+            padding: 40px 20px; 
+            color: #94a3b8; 
+            font-size: 0.9rem; 
+            margin-top: 60px; 
+            border-top: 1px solid #e2e8f0; 
+        }
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .card { padding: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -81,7 +119,7 @@
     <div class="container">
         <div class="intro">
             <h2>Bem-vindo(a)!</h2>
-            <p>Este espaço foi criado para centralizar e organizar toda a minha produção acadêmica ao longo da graduação.</p>
+            <p>Este espaço foi criado para centralizar e organizar toda a minha produção acadêmica ao longo da graduação. Use a busca abaixo para encontrar trabalhos específicos.</p>
         </div>
 
         <input type="text" class="search-box" id="searchInput" placeholder="Buscar por título, matéria ou palavra-chave..." onkeyup="filterCards()">
@@ -93,7 +131,7 @@
                 <h3>Análise e Implementação de Algoritmos</h3>
                 <div class="meta">Matéria: Estrutura de Dados | Semestre: 2026.1</div>
                 <p>Estudo comparativo de desempenho entre algoritmos de busca binária e árvores AVL em grandes volumes de dados.</p>
-                <a href="#" class="btn-link">Visualizar Trabalho &rarr;</a>
+                <a href="javascript:void(0)" class="btn-link" onclick="alert('Link do trabalho')">Visualizar Trabalho &rarr;</a>
             </div>
 
             <div class="card">
@@ -101,24 +139,47 @@
                 <h3>O Impacto da Inteligência Artificial no Mercado</h3>
                 <div class="meta">Matéria: Ética e Sociedade | Semestre: 2025.2</div>
                 <p>Artigo de revisão bibliográfica discutindo as transformações socioeconômicas trazidas pela automação.</p>
-                <a href="#" class="btn-link">Ler Artigo Completo &rarr;</a>
+                <a href="javascript:void(0)" class="btn-link" onclick="alert('Link do artigo')">Ler Artigo Completo &rarr;</a>
             </div>
 
+            <div class="card">
+                <span class="badge presentation">Apresentação</span>
+                <h3>Desenvolvimento Web com HTML5 e CSS3</h3>
+                <div class="meta">Matéria: Programação Web | Semestre: 2025.1</div>
+                <p>Apresentação sobre as novas features do HTML5 e técnicas modernas de estilização com CSS3 Flexbox e Grid.</p>
+                <a href="javascript:void(0)" class="btn-link" onclick="alert('Link da apresentação')">Ver Slides &rarr;</a>
+            </div>
+
+        </div>
+
+        <div id="noResults" class="no-results" style="display: none;">
+            Nenhum resultado encontrado. Tente outra busca!
         </div>
     </div>
 
     <footer>
-        <p>&copy; Meus Trabalhos Acadêmicos - Hospedado no GitHub Pages</p>
+        <p>&copy; 2026 - Meus Trabalhos Acadêmicos | Hospedado no GitHub Pages</p>
     </footer>
 
     <script>
         function filterCards() {
             var input = document.getElementById('searchInput').value.toLowerCase();
             var cards = document.getElementsByClassName('card');
+            var visibleCount = 0;
+
             for (var i = 0; i < cards.length; i++) {
                 var content = cards[i].innerText.toLowerCase();
-                cards[i].style.display = content.includes(input) ? "" : "none";
+                if (content.includes(input)) {
+                    cards[i].style.display = "";
+                    visibleCount++;
+                } else {
+                    cards[i].style.display = "none";
+                }
             }
+
+            // Mostra mensagem se nenhum resultado encontrado
+            var noResults = document.getElementById('noResults');
+            noResults.style.display = visibleCount === 0 ? "block" : "none";
         }
     </script>
 </body>
