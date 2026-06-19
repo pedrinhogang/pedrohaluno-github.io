@@ -3,60 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Espaço no GitHub</title>
+    <title>Meus Trabalhos Universitários</title>
     <style>
+        * { box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            text-align: center;
-            background: white;
-            padding: 50px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            max-width: 500px;
-        }
-        h1 {
-            color: #24292e;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #586069;
-            font-size: 1.1em;
             line-height: 1.6;
         }
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #2ea44f;
+        header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.2s;
+            padding: 60px 20px;
+            text-align: center;
         }
-        .btn:hover {
-            background-color: #2c974b;
+        header h1 { margin: 0; font-size: 2.2rem; font-weight: 700; }
+        header p { margin: 10px 0 0 0; color: #94a3b8; font-size: 1.1rem; }
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        .intro {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border-left: 4px solid #3b82f6;
         }
+        .intro h2 { margin-top: 0; color: #1e293b; }
+        .search-box {
+            width: 100%;
+            padding: 12px 20px;
+            margin-bottom: 30px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            background-color: white;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background-color: #e2e8f0;
+            color: #475569;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .badge.article { background-color: #dbeafe; color: #1e40af; }
+        .badge.project { background-color: #dcfce7; color: #14532d; }
+        .badge.presentation { background-color: #fef9c3; color: #713f12; }
+        .card h3 { margin: 0 0 10px 0; color: #1e293b; font-size: 1.4rem; }
+        .card p { margin: 0 0 15px 0; color: #64748b; }
+        .meta { font-size: 0.9rem; color: #94a3b8; margin-bottom: 15px; }
+        .btn-link { display: inline-block; color: #3b82f6; text-decoration: none; font-weight: 600; }
+        .btn-link:hover { text-decoration: underline; }
+        footer { text-align: center; padding: 40px 20px; color: #94a3b8; font-size: 0.9rem; margin-top: 60px; border-top: 1px solid #e2e8f0; }
     </style>
 </head>
 <body>
 
+    <header>
+        <h1>Meu Portfólio Acadêmico</h1>
+        <p>Repositório de Trabalhos e Projetos Universitários</p>
+    </header>
+
     <div class="container">
-        <h1>Olá, Mundo! 🚀</h1>
-        <p>Este é o meu primeiro site hospedado diretamente no <strong>GitHub Pages</strong>.</p>
-        <p>Criado com a ajuda do Gemini em 2026.</p>
-        <a href="https://github.com" target="_blank" class="btn">Ver meu GitHub</a>
+        <div class="intro">
+            <h2>Bem-vindo(a)!</h2>
+            <p>Este espaço foi criado para centralizar e organizar toda a minha produção acadêmica ao longo da graduação.</p>
+        </div>
+
+        <input type="text" class="search-box" id="searchInput" placeholder="Buscar por título, matéria ou palavra-chave..." onkeyup="filterCards()">
+
+        <div id="projectsGrid">
+            
+            <div class="card">
+                <span class="badge project">Projeto Prático</span>
+                <h3>Análise e Implementação de Algoritmos</h3>
+                <div class="meta">Matéria: Estrutura de Dados | Semestre: 2026.1</div>
+                <p>Estudo comparativo de desempenho entre algoritmos de busca binária e árvores AVL em grandes volumes de dados.</p>
+                <a href="#" class="btn-link">Visualizar Trabalho &rarr;</a>
+            </div>
+
+            <div class="card">
+                <span class="badge article">Artigo Científico</span>
+                <h3>O Impacto da Inteligência Artificial no Mercado</h3>
+                <div class="meta">Matéria: Ética e Sociedade | Semestre: 2025.2</div>
+                <p>Artigo de revisão bibliográfica discutindo as transformações socioeconômicas trazidas pela automação.</p>
+                <a href="#" class="btn-link">Ler Artigo Completo &rarr;</a>
+            </div>
+
+        </div>
     </div>
 
+    <footer>
+        <p>&copy; Meus Trabalhos Acadêmicos - Hospedado no GitHub Pages</p>
+    </footer>
+
+    <script>
+        function filterCards() {
+            var input = document.getElementById('searchInput').value.toLowerCase();
+            var cards = document.getElementsByClassName('card');
+            for (var i = 0; i < cards.length; i++) {
+                var content = cards[i].innerText.toLowerCase();
+                cards[i].style.display = content.includes(input) ? "" : "none";
+            }
+        }
+    </script>
 </body>
 </html>
