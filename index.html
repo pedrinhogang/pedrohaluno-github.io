@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Acadêmico - Pedro Henrique Mendes Maciel</title>
+    <style>
+        /* Reset e Configurações Básicas */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Barra de Navegação */
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        /* Seções Principais */
+        section {
+            padding: 5rem 2rem 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        #sobre {
+            text-align: center;
+            padding-top: 8rem;
+        }
+
+        #sobre h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        #sobre p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Catálogo de Entregas */
+        h2.section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h2.section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background-color: #3498db;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .grid-entregas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .btn-link {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn-link:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            nav ul {
+                margin-top: 1rem;
+            }
+            nav ul li {
+                margin: 0 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Portfólio de Algoritmos</div>
+            <nav>
+                <ul>
+                    <li><a href="#sobre">Início</a></li>
+                    <li><a href="#entregas">Entregas</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="sobre">
+        <h1>Pedro Henrique Mendes Maciel</h1>
+        <p>Estudante da disciplina de <strong>Algoritmos e Programação</strong>. Este portfólio reúne todas as atividades, códigos e entregas práticas desenvolvidas ao longo do semestre.</p>
+    </section>
+
+    <hr style="border: 0; height: 1px; background: #ddd; margin: 2rem auto; max-width: 1100px;">
+
+    <section id="entregas">
+        <h2 class="section-title">Catálogo de Entregas</h2>
+        
+        <!-- O JavaScript vai jogar os trabalhos automaticamente aqui dentro -->
+        <div class="grid-entregas" id="lista-trabalhos"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 - Pedro Henrique Mendes Maciel | Algoritmos e Programação</p>
+    </footer>
+
+    <!-- SISTEMA DE ADIÇÃO AUTOMÁTICA -->
+    <script>
+        // 📥 ÁREA DE ADIÇÃO DE TRABALHOS: Adicione ou remova seus trabalhos aqui!
+        const meusTrabalhos = [
+            {
+                titulo: "Atividade 01: Variáveis e Operadores",
+                descricao: "Exercícios iniciais focados em lógica de programação matemática, manipulação de variáveis e tipos de dados básicos.",
+                link: "https://seu-link-do-classroom-ou-drive.com"
+            },
+            {
+                titulo: "Atividade 02: Estruturas Condicionais (If/Else)",
+                descricao: "Desenvolvimento de algoritmos de tomada de decisão, simulando fluxos de sistemas reais baseados em condições.",
+                link: "https://seu-link-do-classroom-ou-drive.com"
+            },
+            {
+                titulo: "Atividade 03: Estruturas de Repetição (Loops)",
+                descricao: "Criação de rotinas de repetição utilizando While e For para processamento automatizado de dados.",
+                link: "https://seu-link-do-classroom-ou-drive.com"
+            },
+            // Quando tiver um trabalho novo, copie e cole o modelo abaixo logo acima desta linha:
+            // {
+            //     titulo: "Nome do Trabalho Novo",
+            //     descricao: "O que você fez nele.",
+            //     link: "Link do Classroom/Drive"
+            // },
+        ];
+
+        // Função que renderiza os cards na tela automaticamente
+        function carregarTrabalhos() {
+            const container = document.getElementById('lista-trabalhos');
+            container.innerHTML = ""; // Limpa a área
+
+            meusTrabalhos.forEach(trabalho => {
+                const card = `
+                    <div class="card">
+                        <div>
+                            <h3>${trabalho.titulo}</h3>
+                            <p>${trabalho.descricao}</p>
+                        </div>
+                        <a href="${trabalho.link}" target="_blank" class="btn-link">Visualizar Artefato</a>
+                    </div>
+                `;
+                container.innerHTML += card;
+            });
+        }
+
+        // Executa a função assim que o site abre
+        window.onload = carregarTrabalhos;
+    </script>
+</body>
+</html>
