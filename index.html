@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio de Algoritmos - Pedro Henrique Mendes Maciel</title>
+    <style>
+        /* Reset e Estilos Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        section {
+            padding: 5rem 2rem 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        #sobre {
+            text-align: center;
+            padding-top: 8rem;
+        }
+
+        #sobre h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        #sobre p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h2.section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h2.section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background-color: #3498db;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Container das Atividades Embutidas */
+        .workspace-atividades {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .atividade-box {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .atividade-header h3 {
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .atividade-header p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Editor Simulado e Console */
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .editor-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .code-panel, .console-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel-label {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #7f8c8d;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+        }
+
+        textarea.code-input {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            resize: vertical;
+            min-height: 180px;
+        }
+
+        .console-output {
+            background-color: #000;
+            color: #2ecc71;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            padding: 1rem;
+            border-radius: 6px;
+            min-height: 180px;
+            white-space: pre-wrap;
+            overflow-y: auto;
+        }
+
+        .btn-executar {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            align-self: flex-start;
+            transition: background-color 0.3s;
+        }
+
+        .btn-executar:hover {
+            background-color: #2980b9;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Portfólio de Algoritmos</div>
+            <nav>
+                <ul>
+                    <li><a href="#sobre">Início</a></li>
+                    <li><a href="#entregas">Atividades</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="sobre">
+        <h1>Pedro Henrique Mendes Maciel</h1>
+        <p>Estudante de <strong>Algoritmos e Programação</strong>. Abaixo você pode visualizar e executar os códigos desenvolvidos diretamente no navegador.</p>
+    </section>
+
+    <hr style="border: 0; height: 1px; background: #ddd; margin: 2rem auto; max-width: 1100px;">
+
+    <section id="entregas">
+        <h2 class="section-title">Atividades Executáveis</h2>
+        
+        <div class="workspace-atividades">
+
+            <div class="atividade-box">
+                <div class="atividade-header">
+                    <h3>Atividade 01: Cálculo de Média</h3>
+                    <p>Descrição: Algoritmo simples que simula a entrada de duas notas e calcula a média ponderada do aluno.</p>
+                </div>
+                <div class="editor-container">
+                    <div class="code-panel">
+                        <span class="panel-label">Código Fonte (JavaScript)</span>
+                        <textarea class="code-input" id="codigo-1" readonly>
+// Atividade 01 - Pedro Henrique
+let nota1 = 8.5;
+let nota2 = 7.0;
+let media = (nota1 + nota2) / 2;
+
+console.log("Nota 1: " + nota1);
+console.log("Nota 2: " + nota2);
+console.log("Média Final do Aluno: " + media);
+                        </textarea>
+                    </div>
+                    <div class="console-panel">
+                        <span class="panel-label">Resultado / Saída do Console</span>
+                        <div class="console-output" id="console-1">Clique em 'Executar Código' para processar...</div>
+                    </div>
+                </div>
+                <button class="btn-executar" onclick="rodarCodigo(1)">Executar Código</button>
+            </div>
+
+            <div class="atividade-box">
+                <div class="atividade-header">
+                    <h3>Atividade 02: Estrutura Condicional (Verificar Idade)</h3>
+                    <p>Descrição: Algoritmo para testar estruturas de decisão baseadas em uma variável de idade.</p>
+                </div>
+                <div class="editor-container">
+                    <div class="code-panel">
+                        <span class="panel-label">Código Fonte (JavaScript)</span>
+                        <textarea class="code-input" id="codigo-2" readonly>
+// Atividade 02 - Pedro Henrique
+let idade = 19;
+
+console.log("Idade analisada: " + idade + " anos.");
+
+if (idade >= 18) {
+    console.log("Resultado: Usuário é MAIOR de idade.");
+} else {
+    console.log("Resultado: Usuário é MENOR de idade.");
+}
+                        </textarea>
+                    </div>
+                    <div class="console-panel">
+                        <span class="panel-label">Resultado / Saída do Console</span>
+                        <div class="console-output" id="console-2">Clique em 'Executar Código' para processar...</div>
+                    </div>
+                </div>
+                <button class="btn-executar" onclick="rodarCodigo(2)">Executar Código</button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 - Pedro Henrique Mendes Maciel | Algoritmos e Programação</p>
+    </footer>
+
+    <script>
+        function rodarCodigo(id) {
+            const codigo = document.getElementById(`codigo-${id}`).value;
+            const outputConsole = document.getElementById(`console-${id}`);
+            
+            outputConsole.innerHTML = ""; // Limpa o console visual anterior
+            
+            // Intercepta temporariamente o console.log para desviar o texto para o nosso site
+            let logs temporarios = [];
+            const consoleOriginal = console.log;
+            
+            console.log = function(mensagem) {
+                logsTemporarios.push(mensagem);
+                consoleOriginal.apply(console, arguments);
+            };
+
+            try {
+                // Executa o código em formato de string puro
+                eval(codigo); 
+                // Exibe os outputs no painel preto
+                outputConsole.innerHTML = logsTemporarios.join("\n");
+            } catch (erro) {
+                outputConsole.style.color = "#e74c3c"; // Vermelho para erro
+                outputConsole.innerHTML = "Erro de Sintaxe no Código:\n" + erro.message;
+            }
+
+            // Devolve o console original do navegador para o seu estado normal
+            console.log = consoleOriginal;
+        }
+    </script>
+</body>
+</html>
