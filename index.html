@@ -975,91 +975,135 @@
 ───────────────────────────────────── -->
 <script>
 /* ──────────────────────────────────────
-   PROJECTS DATA
+   PROJECTS DATA (Lista de 10 Exercícios)
 ────────────────────────────────────── */
 const projects = [
   {
     id: 1,
     category: "exercicios",
     categoryLabel: "Exercícios",
-    title: "Calculadora de IMC",
-    desc: "Programa em C que calcula o Índice de Massa Corporal a partir de peso e altura, classifica o resultado e exibe uma mensagem correspondente.",
-    techs: ["C", "Stdio", "Estruturas de Controle"],
+    title: "Declaração de Variáveis de Sistema",
+    desc: "Armazenamento e exibição de dados técnicos de uma subestação usando diferentes tipos de dados primitivos.",
+    techs: ["C", "Tipos de Dados", "Printf"],
     githubUrl: "https://github.com/",
-    longDesc: "Implementação completa de uma calculadora de IMC em C. O programa solicita ao usuário peso (kg) e altura (m), realiza o cálculo, e utiliza estruturas if-else encadeadas para classificar o resultado nas categorias: Abaixo do Peso, Normal, Sobrepeso, Obeso I, II e III.",
-    code: `<span class="cm">/* Calculadora de IMC - C */</span>
+    longDesc: "Exercício focado na correta atribuição de tipos na linguagem C. Armazena dados de resistência (inteiro), número de condutores, nomenclatura do projeto (string/char array) e estado de energização através de uma simulação booleana.",
+    code: `<span class="cm">/* Declaração de Variáveis Elétricas */</span>
 <span class="kw">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+<span class="kw">#include</span> <span class="st">&lt;stdbool.h&gt;</span> <span class="cm">// Necessário para o tipo bool</span>
 
 <span class="tp">int</span> <span class="fn">main</span><span class="pu">() {</span>
-  <span class="tp">float</span> peso<span class="pu">,</span> altura<span class="pu">,</span> imc<span class="pu">;</span>
+  <span class="tp">int</span> resistencia <span class="pu">=</span> <span class="nm">47</span><span class="pu">;</span>
+  <span class="tp">int</span> num_fios <span class="pu">=</span> <span class="nm">12</span><span class="pu">;</span>
+  <span class="tp">char</span> nome_projeto<span class="pu">[] =</span> <span class="st">"Subestacao Norte"</span><span class="pu">;</span>
+  <span class="tp">bool</span> esta_energizado <span class="pu">=</span> <span class="kw">true</span><span class="pu">;</span>
 
-  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Peso (kg): "</span><span class="pu">);</span>
-  <span class="fn">scanf</span><span class="pu">(</span><span class="st">"%f"</span><span class="pu">, &amp;peso);</span>
-  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Altura (m): "</span><span class="pu">);</span>
-  <span class="fn">scanf</span><span class="pu">(</span><span class="st">"%f"</span><span class="pu">, &amp;altura);</span>
-
-  imc <span class="pu">=</span> peso <span class="pu">/ (</span>altura <span class="pu">*</span> altura<span class="pu">);</span>
-
-  <span class="kw">if</span> <span class="pu">(</span>imc <span class="pu">&lt;</span> <span class="nm">18.5</span><span class="pu">)</span>
-    <span class="fn">printf</span><span class="pu">(</span><span class="st">"Abaixo do peso\\n"</span><span class="pu">);</span>
-  <span class="kw">else if</span> <span class="pu">(</span>imc <span class="pu">&lt;</span> <span class="nm">25.0</span><span class="pu">)</span>
-    <span class="fn">printf</span><span class="pu">(</span><span class="st">"Peso normal\\n"</span><span class="pu">);</span>
-  <span class="kw">else</span>
-    <span class="fn">printf</span><span class="pu">(</span><span class="st">"Sobrepeso\\n"</span><span class="pu">);</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Resistencia: %d Ohms\\n"</span><span class="pu">,</span> resistencia<span class="pu">);</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Numero de fios: %d\\n"</span><span class="pu">,</span> num_fios<span class="pu">);</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Projeto: %s\\n"</span><span class="pu">,</span> nome_projeto<span class="pu">);</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Energizado: %s\\n"</span><span class="pu">,</span> esta_energizado <span class="pu">?</span> <span class="st">"True"</span> <span class="pu">:</span> <span class="st">"False"</span><span class="pu">);</span>
 
   <span class="kw">return</span> <span class="nm">0</span><span class="pu">;</span>
 <span class="pu">}</span>`
   },
   {
     id: 2,
-    category: "algoritmos",
-    categoryLabel: "Algoritmos",
-    title: "Bubble Sort Visualizado",
-    desc: "Implementação do algoritmo Bubble Sort em C com contador de comparações e trocas, exibindo o vetor a cada iteração.",
-    techs: ["C", "Arrays", "Ordenação"],
+    category: "exercicios",
+    categoryLabel: "Exercícios",
+    title: "Área de Seção Transversal de Duto",
+    desc: "Cálculo geométrico de fluxo superficial para infraestrutura e passagem de cabos elétricos com precisão flutuante.",
+    techs: ["C", "Math", "Geometria"],
     githubUrl: "https://github.com/",
-    longDesc: "Implementação clássica do Bubble Sort com instrumentação: o código conta o número de comparações e trocas realizadas, imprime o estado do vetor após cada passagem, e calcula a complexidade empírica para comparação com O(n²) teórico.",
-    code: `<span class="kw">void</span> <span class="fn">bubbleSort</span><span class="pu">(</span><span class="tp">int</span> v<span class="pu">[],</span> <span class="tp">int</span> n<span class="pu">) {</span>
-  <span class="tp">int</span> trocas <span class="pu">=</span> <span class="nm">0</span><span class="pu">,</span> cmp <span class="pu">=</span> <span class="nm">0</span><span class="pu">;</span>
-  <span class="kw">for</span> <span class="pu">(</span><span class="tp">int</span> i <span class="pu">=</span> <span class="nm">0</span><span class="pu">;</span> i <span class="pu">&lt;</span> n<span class="pu">-</span><span class="nm">1</span><span class="pu">;</span> i<span class="pu">++) {</span>
-    <span class="kw">for</span> <span class="pu">(</span><span class="tp">int</span> j <span class="pu">=</span> <span class="nm">0</span><span class="pu">;</span> j <span class="pu">&lt;</span> n<span class="pu">-</span>i<span class="pu">-</span><span class="nm">1</span><span class="pu">;</span> j<span class="pu">++) {</span>
-      cmp<span class="pu">++;</span>
-      <span class="kw">if</span> <span class="pu">(</span>v<span class="pu">[</span>j<span class="pu">] &gt;</span> v<span class="pu">[</span>j<span class="pu">+</span><span class="nm">1</span><span class="pu">]) {</span>
-        <span class="tp">int</span> tmp <span class="pu">=</span> v<span class="pu">[</span>j<span class="pu">];</span>
-        v<span class="pu">[</span>j<span class="pu">] =</span> v<span class="pu">[</span>j<span class="pu">+</span><span class="nm">1</span><span class="pu">];</span>
-        v<span class="pu">[</span>j<span class="pu">+</span><span class="nm">1</span><span class="pu">] =</span> tmp<span class="pu">;</span>
-        trocas<span class="pu">++;</span>
-      <span class="pu">}</span>
-    <span class="pu">}</span>
-  <span class="pu">}</span>
-  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Cmp: %d | Trocas: %d\\n"</span><span class="pu">,</span> cmp<span class="pu">,</span> trocas);
+    longDesc: "Determina a área útil de um duto circular de raio 0.15m. Utiliza constantes de dupla precisão para representar a constante Pi e formata a saída de dados limitando as casas decimais para relatórios de engenharia.",
+    code: `<span class="cm">/* Cálculo de Seção de Duto */</span>
+<span class="kw">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="tp">int</span> <span class="fn">main</span><span class="pu">() {</span>
+  <span class="tp">double</span> raio <span class="pu">=</span> <span class="nm">0.15</span><span class="pu">;</span>
+  <span class="tp">double</span> pi <span class="pu">=</span> <span class="nm">3.14159</span><span class="pu">;</span>
+  <span class="tp">double</span> area <span class="pu">=</span> pi <span class="pu">* (</span>raio <span class="pu">*</span> raio<span class="pu">);</span>
+
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"A area da secao transversal e: %.4f m2\\n"</span><span class="pu">,</span> area<span class="pu">);</span>
+  <span class="kw">return</span> <span class="nm">0</span><span class="pu">;</span>
 <span class="pu">}</span>`
   },
   {
     id: 3,
-    category: "projetos",
-    categoryLabel: "Projetos Finais",
-    title: "Analisador de Circuitos RC",
-    desc: "Projeto final que calcula a resposta transitória de um circuito RC sob uma onda quadrada e salva os dados estruturados em arquivo .txt.",
-    techs: ["C", "Math.h", "File I/O", "Eng. Elétrica"],
+    category: "exercicios",
+    categoryLabel: "Exercícios",
+    title: "Análise de Carga de Motor Elétrico",
+    desc: "Determinação de corrente consumida e impedância/resistência equivalente baseada em potência ativa nominal.",
+    techs: ["C", "Lei de Ohm", "Potência"],
     githubUrl: "https://github.com/",
-    longDesc: "Projeto voltado para Engenharia Elétrica que resolve numericamente a equação diferencial de um circuito RC em série. O programa aceita parâmetros de R, C e frequência, gera os dados de tensão no capacitor ao longo do tempo e os exporta para um arquivo de texto compatível com plotadores como MATLAB ou Excel.",
-    code: `<span class="cm">/* Trecho do Gerador de Dados RC */</span>
-<span class="kw">#include</span> <span class="st">&lt;math.h&gt;</span>
+    longDesc: "Aplica as leis fundamentais de circuitos para avaliar um motor elétrico de 3500W ligado em 220V. O programa calcula a corrente RMS resultante e a resistência de isolação/oposição equivalente do enrolamento.",
+    code: `<span class="cm">/* Análise de Carga Elétrica */</span>
+<span class="kw">#include</span> <span class="st">&lt;stdio.h&gt;</span>
 
-<span class="kw">void</span> <span class="fn">calcularResposta</span><span class="pu">(</span><span class="tp">float</span> R<span class="pu">,</span> <span class="tp">float</span> C<span class="pu">,</span> <span class="tp">float</span> V0<span class="pu">) {</span>
-  <span class="tp">float</span> tau <span class="pu">=</span> R <span class="pu">* C<span class="pu">;</span>
-  <span class="tp">float</span> t<span class="pu">,</span> vc<span class="pu">;</span>
-  FILE <span class="pu">*</span>arq <span class="pu">=</span> <span class="fn">fopen</span><span class="pu">(</span><span class="st">"dados_rc.txt"</span><span class="pu">,</span> <span class="st">"w"</span><span class="pu">);</span>
+<span class="tp">int</span> <span class="fn">main</span><span class="pu">() {</span>
+  <span class="tp">float</span> potencia <span class="pu">=</span> <span class="nm">3500.0</span><span class="pu">;</span>
+  <span class="tp">float</span> tensao <span class="pu">=</span> <span class="nm">220.0</span><span class="pu">;</span>
+  
+  <span class="tp">float</span> corrente <span class="pu">=</span> potencia <span class="pu">/</span> tensao<span class="pu">;</span>
+  <span class="tp">float</span> resistencia_equiv <span class="pu">=</span> tensao <span class="pu">/</span> corrente<span class="pu">;</span>
 
-  <span class="kw">for</span><span class="pu">(</span>t <span class="pu">=</span> <span class="nm">0</span><span class="pu">;</span> t <span class="pu">&lt;</span> <span class="nm">5</span><span class="pu">*</span>tau<span class="pu">;</span> t <span class="pu">+=</span> tau<span class="pu">/</span><span class="nm">10</span><span class="pu">) {</span>
-    vc <span class="pu">=</span> V0 <span class="pu">* (</span><span class="nm">1.0</span> <span class="pu">-</span> <span class="fn">exp</span><span class="pu">(-</span>t<span class="pu">/</span>tau<span class="pu">));</span>
-    <span class="fn">fprintf</span><span class="pu">(</span>arq<span class="pu">,</span> <span class="st">"%.4f\\t%.4f\\n"</span><span class="pu">,</span> t<span class="pu">,</span> vc<span class="pu">);</span>
-  <span class="pu">}</span>
-  <span class="fn">fclose</span><span class="pu">(</span>arq<span class="pu">);</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Corrente: %.2f A\\n"</span><span class="pu">,</span> corrente<span class="pu">);</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Resistencia equivalente: %.2f Ohms\\n"</span><span class="pu">,</span> resistencia_equiv<span class="pu">);</span>
+  <span class="kw">return</span> <span class="nm">0</span><span class="pu">;</span>
 <span class="pu">}</span>`
-  }
-];
+  },
+  {
+    id: 4,
+    category: "exercicios",
+    categoryLabel: "Exercícios",
+    title: "Conversor de Tempo Base Horária",
+    desc: "Decomposição cronológica de segundos em formato estruturado padrão H:MM:SS utilizando operadores aritméticos de divisão.",
+    techs: ["C", "Aritmética Modulo", "Formatadores"],
+    githubUrl: "https://github.com/",
+    longDesc: "Algoritmo de conversão temporal. Utiliza divisões inteiras sucessivas e o operador resto (%) para fatiar um montante bruto de 3600 segundos em componentes de horas, minutos e segundos remanescentes.",
+    code: `<span class="cm">/* Conversão H:MM:SS */</span>
+<span class="kw">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="tp">int</span> <span class="fn">main</span><span class="pu">() {</span>
+  <span class="tp">int</span> total_segundos <span class="pu">=</span> <span class="nm">3600</span><span class="pu">;</span>
+  
+  <span class="tp">int</span> horas <span class="pu">=</span> total_segundos <span class="pu">/</span> <span class="nm">3600</span><span class="pu">;</span>
+  <span class="tp">int</span> resto_segundos <span class="pu">=</span> total_segundos <span class="pu">%</span> <span class="nm">3600</span><span class="pu">;</span>
+  <span class="tp">int</span> minutos <span class="pu">=</span> resto_segundos <span class="pu">/</span> <span class="nm">60</span><span class="pu">;</span>
+  <span class="tp">int</span> segundos <span class="pu">=</span> resto_segundos <span class="pu">%</span> <span class="nm">60</span><span class="pu">;</span>
+
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Resultado: %02d:%02d:%02d\\n"</span><span class="pu">,</span> horas<span class="pu">,</span> minutos<span class="pu">,</span> segundos<span class="pu">);</span>
+  <span class="kw">return</span> <span class="nm">0</span><span class="pu">;</span>
+<span class="pu">}</span>`
+  },
+  {
+    id: 5,
+    category: "exercicios",
+    categoryLabel: "Exercícios",
+    title: "Volumetria de Tanque Cilíndrico",
+    desc: "Cálculo de capacidade volumétrica de contenção e dimensionamento superficial de blindagem lateral externa.",
+    techs: ["C", "Geometria Espacial", "Alocação"],
+    githubUrl: "https://github.com/",
+    longDesc: "Voltado para problemas de engenharia química e de armazenamento, este programa processa as dimensões lineares de um reservatório cilíndrico de grande porte para quantificar metros cúbicos volumétricos e área de parede externa.",
+    code: `<span class="cm">/* Dimensionamento Cilíndrico */</span>
+<span class="kw">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="tp">int</span> <span class="fn">main</span><span class="pu">() {</span>
+  <span class="tp">double</span> raio <span class="pu">=</span> <span class="nm">2.0</span><span class="pu">;</span>
+  <span class="tp">double</span> altura <span class="pu">=</span> <span class="nm">5.0</span><span class="pu">;</span>
+  <span class="tp">double</span> pi <span class="pu">=</span> <span class="nm">3.14159</span><span class="pu">;</span>
+
+  <span class="tp">double</span> volume <span class="pu">=</span> pi <span class="pu">* (</span>raio <span class="pu">*</span> raio<span class="pu">) *</span> altura<span class="pu">;</span>
+  <span class="tp">double</span> area_lateral <span class="pu">=</span> <span class="nm">2.0</span> <span class="pu">*</span> pi <span class="pu">*</span> raio <span class="pu">*</span> altura<span class="pu">;</span>
+
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Volume do tanque: %.2f m3\\n"</span><span class="pu">,</span> volume<span class="pu">);</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Area lateral: %.2f m2\\n"</span><span class="pu">,</span> area_lateral<span class="pu">);</span>
+  <span class="kw">return</span> <span class="nm">0</span><span class="pu">;</span>
+<span class="pu">}</span>`
+  },
+  {
+    id: 6,
+    category: "exercicios",
+    categoryLabel: "Exercícios",
+    title: "Análise de Frequência e Período
 
 /* ──────────────────────────────────────
    DYNAMIC CARD RENDERING
