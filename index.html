@@ -1103,8 +1103,125 @@ const projects = [
     id: 6,
     category: "exercicios",
     categoryLabel: "Exercícios",
-    title: "Análise de Frequência e Período
-   ];
+    title: "Análise de Frequência e Período AC",
+    desc: "Demonstração prática de coerção de tipos numéricos e determinação do tempo de ciclo de uma senoide senoidal.",
+    techs: ["C", "Casting", "Sistemas de Potência"],
+    githubUrl: "https://github.com/",
+    longDesc: "Mapeia a frequência de rede elétrica padrão nacional (60 Hz). Aborda o comportamento de ponto flutuante em divisões, evidenciando como tipos inteiros se comportam matematicamente quando convertidos implicitamente ou explicitamente.",
+    code: `<span class="cm">/* Período da Rede Elétrica (60Hz) */</span>
+<span class="kw">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="tp">int</span> <span class="fn">main</span><span class="pu">() {</span>
+  <span class="tp">int</span> freq <span class="pu">=</span> <span class="nm">60</span><span class="pu">;</span>
+  <span class="cm">// Em C, precisamos usar 1.0 (ponto flutuante) para evitar divisão inteira zerada!</span>
+  <span class="tp">double</span> periodo <span class="pu">=</span> <span class="nm">1.0</span> <span class="pu">/</span> freq<span class="pu">;</span>
+
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Frequencia: %d Hz\\n"</span><span class="pu">,</span> freq<span class="pu">);</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Periodo: %.6f segundos\\n"</span><span class="pu">,</span> periodo<span class="pu">);</span>
+
+  <span class="kw">return</span> <span class="nm">0</span><span class="pu">;</span>
+<span class="pu">}</span>`
+  },
+  {
+    id: 7,
+    category: "exercicios",
+    categoryLabel: "Exercícios",
+    title: "Cálculo Orbital Gravitacional",
+    desc: "Modelagem física da força atrativa planetária usando representações exponenciais e de notação científica científica.",
+    techs: ["C", "Física Teórica", "Notação Científica"],
+    githubUrl: "https://github.com/",
+    longDesc: "Calcula a interação newtoniana de atração de massa. Demonstra a habilidade da linguagem de ler, processar e estruturar dados com expoentes elevados de base 10 (double em formato 'e' positivo e negativo).",
+    code: `<span class="cm">/* Atração de Massas - Newton */</span>
+<span class="kw">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="tp">int</span> <span class="fn">main</span><span class="pu">() {</span>
+  <span class="tp">double</span> G <span class="pu">=</span> <span class="nm">6.674e-11</span><span class="pu">;</span>
+  <span class="tp">double</span> m1 <span class="pu">=</span> <span class="nm">5.0e24</span><span class="pu">;</span>
+  <span class="tp">double</span> m2 <span class="pu">=</span> <span class="nm">80.0</span><span class="pu">;</span>
+  <span class="tp">double</span> d <span class="pu">=</span> <span class="nm">6.371e6</span><span class="pu">;</span>
+
+  <span class="tp">double</span> forca <span class="pu">= (</span>G <span class="pu">*</span> m1 <span class="pu">*</span> m2<span class="pu">) / (</span>d <span class="pu">*</span> d<span class="pu">);</span>
+
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"A forca gravitacional e: %.2f N\\n"</span><span class="pu">,</span> forca<span class="pu">);</span>
+  <span class="kw">return</span> <span class="nm">0</span><span class="pu">;</span>
+<span class="pu">}</span>`
+  },
+  {
+    id: 8,
+    category: "exercicios",
+    categoryLabel: "Exercícios",
+    title: "Equação de Divisor de Tensão Resistivo",
+    desc: "Cálculo de atenuação e condicionamento de sinais analógicos em barramentos e malhas eletrônicas de controle.",
+    techs: ["C", "Eletrônica Analógica", "Circuitos"],
+    githubUrl: "https://github.com/",
+    longDesc: "Resolução matemática da fórmula clássica de divisores de tensão passivos. Avalia a queda de tensão linear sobre um resistor de carga de 4.7k Ohms acoplado em série com uma malha primária alimentada em 12V.",
+    code: `<span class="cm">/* Divisor de Tensão Ativo */</span>
+<span class="kw">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="tp">int</span> <span class="fn">main</span><span class="pu">() {</span>
+  <span class="tp">double</span> vin <span class="pu">=</span> <span class="nm">12.0</span><span class="pu">;</span>
+  <span class="tp">double</span> r1 <span class="pu">=</span> <span class="nm">10000.0</span><span class="pu">;</span>
+  <span class="tp">double</span> r2 <span class="pu">=</span> <span class="nm">4700.0</span><span class="pu">;</span>
+
+  <span class="tp">double</span> vout <span class="pu">=</span> vin <span class="pu">* (</span>r2 <span class="pu">/ (</span>r1 <span class="pu">+</span> r2<span class="pu">));</span>
+
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"A tensao de saida (Vout) e: %.4f V\\n"</span><span class="pu">,</span> vout<span class="pu">);</span>
+  <span class="kw">return</span> <span class="nm">0</span><span class="pu">;</span>
+<span class="pu">}</span>`
+  },
+  {
+    id: 9,
+    category: "exercicios",
+    categoryLabel: "Exercícios",
+    title: "Conversão de Resolução e Concatenamento",
+    desc: "Amostragem de barramentos binários digitais através de casting explícito de tipos primitivos numéricos.",
+    techs: ["C", "Manipulação de Strings", "sprintf"],
+    githubUrl: "https://github.com/",
+    longDesc: "Simula o valor limiar de saturação de um conversor analógico-digital (ADC) de 8 bits (255). Realiza transformações de tipos primitivos em ponto flutuante e cadeias de caracteres através da função segura sprintf.",
+    code: `<span class="cm">/* Formatação e Manipulação de String */</span>
+<span class="kw">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="tp">int</span> <span class="fn">main</span><span class="pu">() {</span>
+  <span class="tp">int</span> valor <span class="pu">=</span> <span class="nm">255</span><span class="pu">;</span>
+  <span class="tp">float</span> valor_float <span class="pu">= (</span><span class="tp">float</span><span class="pu">)</span>valor<span class="pu">;</span>
+  <span class="tp">char</span> resultado_concat<span class="pu">[</span><span class="nm">30</span><span class="pu">];</span>
+
+  <span class="cm">// Em C, concatenamos injetando dados formatados em buffers de texto</span>
+  <span class="fn">sprintf</span><span class="pu">(</span>resultado_concat<span class="pu">,</span> <span class="st">%d bits"</span><span class="pu">,</span> valor<span class="pu">);</span>
+
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Valor original (int): %d\\n"</span><span class="pu">,</span> valor<span class="pu">);</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Valor em float: %.2f\\n"</span><span class="pu">,</span> valor_float<span class="pu">);</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Resultado da concatenacao: %s\\n"</span><span class="pu">,</span> resultado_concat<span class="pu">);</span>
+
+  <span class="kw">return</span> <span class="nm">0</span><span class="pu">;</span>
+<span class="pu">}</span>`
+  },
+  {
+    id: 10,
+    category: "exercicios",
+    categoryLabel: "Exercícios",
+    title: "Truncamento e Arredondamento Numérico",
+    desc: "Ajuste de aproximação estruturada para constantes irracionais matemáticas utilizando máscaras de escopo formatado.",
+    techs: ["C", "Máscaras Flutuantes", "Precisão"],
+    githubUrl: "https://github.com/",
+    longDesc: "Demonstra o controle formal de saída de algarismos significativos. O programa aplica restrições de exibição de ponto decimal sobre dados brutos flutuantes para padronizar leituras e medições de instrumentação laboratorial.",
+    code: `<span class="cm">/* Controle de Precisão Decimais */</span>
+<span class="kw">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="tp">int</span> <span class="fn">main</span><span class="pu">() {</span>
+  <span class="tp">double</span> v1 <span class="pu">=</span> <span class="nm">3.14159</span><span class="pu">;</span>
+  <span class="tp">double</span> v2 <span class="pu">=</span> <span class="nm">9.8067</span><span class="pu">;</span>
+  <span class="tp">double</span> v3 <span class="pu">=</span> <span class="nm">1.41421</span><span class="pu">;</span>
+
+  <span class="cm">// No C, o próprio formatador de exibição "%.2f" faz o arredondamento automático</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Original: %f -&gt; Arredondado: %.2f\\n"</span><span class="pu">,</span> v1<span class="pu">,</span> v1<span class="pu">);</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Original: %f -&gt; Arredondado: %.2f\\n"</span><span class="pu">,</span> v2<span class="pu">,</span> v2<span class="pu">);</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Original: %f -&gt; Arredondado: %.2f\\n"</span><span class="pu">,</span> v3<span class="pu">,</span> v3<span class="pu">);</span>
+
+  <span class="kw">return</span> <span class="nm">0</span><span class="pu">;</span>
+<span class="pu">}</span>`
+  }
+];
   
 /* ──────────────────────────────────────
    DYNAMIC CARD RENDERING
