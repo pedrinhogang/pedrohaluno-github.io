@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pedro Henrique — Algoritmos & Programação</title>
 
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
 
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <style>
@@ -54,5 +56,1122 @@
     a { color: inherit; text-decoration: none; }
 
     /* ───────────────────────────────────────────
-        SCANLINE OVERLAY
-    ───────────────────────────────────────────
+        SCANLINE OVERLAY (subtle texture)
+    ─────────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,245,255,0.012) 2px,
+        rgba(0,245,255,0.012) 4px
+      );
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ───────────────────────────────────────────
+        HEADER
+    ─────────────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,13,15,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(1rem, 5vw, 3rem);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-shrink: 0;
+    }
+
+    .bolt-svg {
+      width: 32px;
+      height: 32px;
+      filter: drop-shadow(0 0 6px var(--cyan));
+      animation: pulse-bolt 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-bolt {
+      0%, 100% { filter: drop-shadow(0 0 5px var(--cyan)); }
+      50%       { filter: drop-shadow(0 0 14px var(--cyan)) drop-shadow(0 0 24px var(--purple)); }
+    }
+
+    .logo-text {
+      font-family: var(--mono);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text-1);
+    }
+
+    .logo-text span {
+      color: var(--cyan);
+    }
+
+    nav {
+      margin-left: auto;
+      display: flex;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      transition: color var(--transition), background var(--transition);
+    }
+
+    nav a:hover {
+      color: var(--cyan);
+      background: rgba(0,245,255,0.07);
+    }
+
+    /* ───────────────────────────────────────────
+        HERO
+    ─────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      padding: clamp(3rem, 10vh, 6rem) clamp(1rem, 5vw, 3rem) clamp(2rem, 6vh, 4rem);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: -10%;
+      background-image:
+        linear-gradient(rgba(0,245,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,245,255,0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      transform: perspective(400px) rotateX(20deg);
+      transform-origin: top center;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 50%;
+      background: linear-gradient(to top, var(--bg-deep), transparent);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      border: 1px solid rgba(0,245,255,0.25);
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      background: rgba(0,245,255,0.05);
+    }
+
+    .hero h1 {
+      font-family: var(--mono);
+      font-size: clamp(2rem, 6vw, 3.6rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 .line-cyan { color: var(--cyan); }
+
+    .hero-sub {
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      color: var(--text-2);
+      max-width: 540px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--cyan);
+      color: #000;
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .hero-cta:hover {
+      box-shadow: 0 0 24px rgba(0,245,255,0.5), 0 4px 16px rgba(0,0,0,0.4);
+      transform: translateY(-2px);
+    }
+
+    /* ───────────────────────────────────────────
+        SECTIONS
+    ─────────────────────────────────────────── */
+    .section {
+      padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1rem, 5vw, 3rem);
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: var(--mono);
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 700;
+      color: var(--text-1);
+      margin-bottom: 1rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, var(--cyan), var(--purple), transparent);
+      margin-bottom: 2.5rem;
+      opacity: 0.4;
+    }
+
+    /* ───────────────────────────────────────────
+        ABOUT
+    ─────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 720px) {
+      .about-grid { grid-template-columns: 1fr; }
+    }
+
+    .about-text p {
+      color: var(--text-2);
+      margin-bottom: 1rem;
+    }
+
+    .about-text p strong {
+      color: var(--text-1);
+      font-weight: 600;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: var(--mono);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--cyan);
+      line-height: 1;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ───────────────────────────────────────────
+        FILTER BAR
+    ─────────────────────────────────────────── */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .filter-btn {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .filter-btn:hover {
+      color: var(--cyan);
+      border-color: rgba(0,245,255,0.3);
+      background: rgba(0,245,255,0.05);
+    }
+
+    .filter-btn.active {
+      color: #000;
+      background: var(--cyan);
+      border-color: var(--cyan);
+      box-shadow: 0 0 14px rgba(0,245,255,0.35);
+    }
+
+    /* ───────────────────────────────────────────
+        PROJECTS GRID
+    ─────────────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      cursor: pointer;
+      transition:
+        border-color var(--transition),
+        box-shadow var(--transition),
+        transform var(--transition),
+        opacity var(--transition);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(0,245,255,0.06), rgba(123,47,190,0.06));
+      opacity: 0;
+      transition: opacity var(--transition);
+      pointer-events: none;
+    }
+
+    .project-card:hover {
+      border-color: rgba(0,245,255,0.45);
+      box-shadow:
+        0 0 0 1px rgba(0,245,255,0.15),
+        0 8px 32px rgba(0,0,0,0.4),
+        0 0 24px rgba(0,245,255,0.1);
+      transform: translateY(-4px);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-card.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.95);
+    }
+
+    .card-category {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--purple);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card-category::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--purple);
+      box-shadow: 0 0 6px var(--purple);
+    }
+
+    .card-category.cat-algoritmos::before,
+    .card-category.cat-algoritmos { color: var(--cyan); }
+    .card-category.cat-algoritmos::before { background: var(--cyan); box-shadow: 0 0 6px var(--cyan); }
+
+    .card-category.cat-projetos::before,
+    .card-category.cat-projetos { color: #f7c948; }
+    .card-category.cat-projetos::before { background: #f7c948; box-shadow: 0 0 6px #f7c948; }
+
+    .card-title {
+      font-family: var(--mono);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-1);
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--text-2);
+      flex: 1;
+    }
+
+    .card-techs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tech-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text-3);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 0.25rem;
+    }
+
+    .btn-code {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      border: 1px solid rgba(0,245,255,0.35);
+      background: transparent;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-code:hover {
+      background: rgba(0,245,255,0.1);
+      box-shadow: 0 0 12px rgba(0,245,255,0.25);
+    }
+
+    .btn-detail {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      border: 1px solid var(--border);
+      background: transparent;
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-detail:hover {
+      color: var(--text-1);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    /* ───────────────────────────────────────────
+        MODAL
+    ─────────────────────────────────────────── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      box-shadow:
+        0 0 0 1px rgba(0,245,255,0.1),
+        0 32px 80px rgba(0,0,0,0.7);
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      padding: 1.5rem 1.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .modal-header-text { flex: 1; }
+
+    .modal-category {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.3rem;
+    }
+
+    .modal-title {
+      font-family: var(--mono);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-1);
+    }
+
+    .modal-close {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      transition: all var(--transition);
+    }
+
+    .modal-close:hover {
+      color: var(--text-1);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .modal-body {
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .modal-desc {
+      color: var(--text-2);
+      line-height: 1.75;
+    }
+
+    .modal-techs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .modal-section-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 0.6rem;
+    }
+
+    .code-block {
+      background: #0a0a10;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: #c8d3f5;
+      white-space: pre;
+    }
+
+    /* Syntax highlight classes */
+    .kw  { color: #c792ea; }   /* keyword */
+    .fn  { color: #82aaff; }   /* function */
+    .tp  { color: #ffcb6b; }   /* type */
+    .cm  { color: #546e7a; font-style: italic; } /* comment */
+    .st  { color: #c3e88d; }   /* string */
+    .nm  { color: #f78c6c; }   /* number */
+    .pu  { color: #89ddff; }   /* punctuation */
+
+    .modal-footer {
+      padding: 1rem 1.75rem 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #000;
+      background: var(--cyan);
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 20px rgba(0,245,255,0.45);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .btn-secondary:hover {
+      color: var(--text-1);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    /* ───────────────────────────────────────────
+        FOOTER
+    ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem clamp(1rem, 5vw, 3rem);
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-text {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text-3);
+    }
+
+    .footer-text span { color: var(--cyan); }
+
+    /* ───────────────────────────────────────────
+        SCROLL REVEAL
+    ─────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ───────────────────────────────────────────
+        SCROLLBAR
+    ─────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-deep); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(0,245,255,0.3); }
+
+    /* ───────────────────────────────────────────
+        RESPONSIVE NAV
+    ─────────────────────────────────────────── */
+    @media (max-width: 540px) {
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─────────────────────────────────────
+     HEADER
+───────────────────────────────────── -->
+<header>
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <svg class="bolt-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="15" width="6" height="1.5" rx="0.75" fill="#00F5FF" opacity="0.4"/>
+        <rect x="22" y="15" width="6" height="1.5" rx="0.75" fill="#00F5FF" opacity="0.4"/>
+        <rect x="15.25" y="4" width="1.5" height="6" rx="0.75" fill="#00F5FF" opacity="0.4"/>
+        <path d="M19 3L10 16H16L13 29L23 14H17L19 3Z" fill="url(#boltGrad)" />
+        <defs>
+          <linearGradient id="boltGrad" x1="16" y1="3" x2="16" y2="29" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#00F5FF"/>
+            <stop offset="1" stop-color="#7B2FBE"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="logo-text">PH<span>::</span>Portfólio</span>
+    </div>
+
+    <nav>
+      <a href="#sobre">Sobre</a>
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ─────────────────────────────────────
+     HERO
+───────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <i class="fa-solid fa-bolt"></i>
+      Engenharia Elétrica &nbsp;·&nbsp; Pedro Henrique
+    </div>
+    <h1>
+      Algoritmos &amp;<br>
+      <span class="line-cyan">Programação</span>
+    </h1>
+    <p class="hero-sub">
+      Coleção de trabalhos acadêmicos desenvolvidos ao longo da disciplina por Pedro Henrique —
+      de estruturas básicas a algoritmos de ordenação e aplicações aplicadas à engenharia.
+    </p>
+    <a href="#trabalhos" class="hero-cta">
+      <i class="fa-solid fa-code"></i>
+      Explorar Trabalhos
+    </a>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────
+     SOBRE
+───────────────────────────────────── -->
+<section class="section" id="sobre">
+  <div class="section-inner">
+    <p class="section-label">// 001 &nbsp;—&nbsp; Sobre</p>
+    <h2 class="section-title">A Disciplina</h2>
+    <div class="divider"></div>
+
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>
+          <strong>Algoritmos e Programação</strong> é a base computacional do curso de Engenharia Elétrica.
+          Nela desenvolvemos o raciocínio lógico e a capacidade de traduzir problemas de engenharia
+          em soluções computacionais eficientes.
+        </p>
+        <p>
+          Os trabalhos abrangem desde os fundamentos da linguagem C — como variáveis, estruturas de
+          controle e funções — até algoritmos clássicos de busca e ordenação, manipulação de arquivos
+          e introdução a estruturas de dados dinâmicas como listas encadeadas.
+        </p>
+        <p>
+          Cada exercício foi pensado para reforçar conceitos que aparecem em disciplinas subsequentes
+          como Sistemas Embarcados, Processamento de Sinais e Automação Industrial.
+        </p>
+      </div>
+
+      <div class="about-stats reveal">
+        <div class="stat-card">
+          <span class="stat-num">12</span>
+          <span class="stat-label">Trabalhos Entregues</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">3</span>
+          <span class="stat-label">Linguagens Usadas</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Projetos Finais</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">1</span>
+          <span class="stat-label">Semestre</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────
+     TRABALHOS
+───────────────────────────────────── -->
+<section class="section" id="trabalhos">
+  <div class="section-inner">
+    <p class="section-label">// 002 &nbsp;—&nbsp; Trabalhos</p>
+    <h2 class="section-title">Projetos &amp; Exercícios</h2>
+    <div class="divider"></div>
+
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="todos">
+        <i class="fa-solid fa-border-all"></i>&nbsp; Todos
+      </button>
+      <button class="filter-btn" data-filter="exercicios">
+        <i class="fa-solid fa-dumbbell"></i>&nbsp; Exercícios
+      </button>
+      <button class="filter-btn" data-filter="algoritmos">
+        <i class="fa-solid fa-diagram-project"></i>&nbsp; Algoritmos
+      </button>
+      <button class="filter-btn" data-filter="projetos">
+        <i class="fa-solid fa-star"></i>&nbsp; Projetos Finais
+      </button>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+      <!-- Cards injetados dinamicamente via JavaScript -->
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────────────────
+     FOOTER / CONTATO
+───────────────────────────────────── -->
+<footer id="contato">
+  <div class="footer-inner">
+    <div class="footer-text">
+      &copy; Portfólio desenvolvido por <span>Pedro Henrique</span> &nbsp;·&nbsp;
+      Construído com <span>&lt;código&gt;</span> e corrente elétrica &nbsp;·&nbsp;
+      Engenharia Elétrica
+    </div>
+  </div>
+</footer>
+
+<!-- ─────────────────────────────────────
+     MODAL
+───────────────────────────────────── -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-header-text">
+        <div class="modal-category" id="mCategory"></div>
+        <div class="modal-title" id="mTitle"></div>
+      </div>
+      <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-desc" id="mDesc"></p>
+
+      <div>
+        <div class="modal-section-label">Tecnologias</div>
+        <div class="modal-techs" id="mTechs"></div>
+      </div>
+
+      <div>
+        <div class="modal-section-label">Trecho do Código</div>
+        <div class="code-block">
+          <pre id="mCode"></pre>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-primary" id="mBtnCode">
+        <i class="fa-brands fa-github"></i> Ver Código
+      </button>
+      <button class="btn-secondary" id="mBtnClose2">
+        <i class="fa-solid fa-xmark"></i> Fechar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────────
+     JAVASCRIPT
+───────────────────────────────────── -->
+<script>
+/* ──────────────────────────────────────
+   PROJECTS DATA
+────────────────────────────────────── */
+const projects = [
+  {
+    id: 1,
+    category: "exercicios",
+    categoryLabel: "Exercícios",
+    title: "Calculadora de IMC",
+    desc: "Programa em C que calcula o Índice de Massa Corporal a partir de peso e altura, classifica o resultado e exibe uma mensagem correspondente.",
+    techs: ["C", "Stdio", "Estruturas de Controle"],
+    githubUrl: "https://github.com/",
+    longDesc: "Implementação completa de uma calculadora de IMC em C. O programa solicita ao usuário peso (kg) e altura (m), realiza o cálculo, e utiliza estruturas if-else encadeadas para classificar o resultado nas categorias: Abaixo do Peso, Normal, Sobrepeso, Obeso I, II e III.",
+    code: `<span class="cm">/* Calculadora de IMC - C */</span>
+<span class="kw">#include</span> <span class="st">&lt;stdio.h&gt;</span>
+
+<span class="tp">int</span> <span class="fn">main</span><span class="pu">() {</span>
+  <span class="tp">float</span> peso<span class="pu">,</span> altura<span class="pu">,</span> imc<span class="pu">;</span>
+
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Peso (kg): "</span><span class="pu">);</span>
+  <span class="fn">scanf</span><span class="pu">(</span><span class="st">"%f"</span><span class="pu">, &amp;peso);</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Altura (m): "</span><span class="pu">);</span>
+  <span class="fn">scanf</span><span class="pu">(</span><span class="st">"%f"</span><span class="pu">, &amp;altura);</span>
+
+  imc <span class="pu">=</span> peso <span class="pu">/ (</span>altura <span class="pu">*</span> altura<span class="pu">);</span>
+
+  <span class="kw">if</span> <span class="pu">(</span>imc <span class="pu">&lt;</span> <span class="nm">18.5</span><span class="pu">)</span>
+    <span class="fn">printf</span><span class="pu">(</span><span class="st">"Abaixo do peso\\n"</span><span class="pu">);</span>
+  <span class="kw">else if</span> <span class="pu">(</span>imc <span class="pu">&lt;</span> <span class="nm">25.0</span><span class="pu">)</span>
+    <span class="fn">printf</span><span class="pu">(</span><span class="st">"Peso normal\\n"</span><span class="pu">);</span>
+  <span class="kw">else</span>
+    <span class="fn">printf</span><span class="pu">(</span><span class="st">"Sobrepeso\\n"</span><span class="pu">);</span>
+
+  <span class="kw">return</span> <span class="nm">0</span><span class="pu">;</span>
+<span class="pu">}</span>`
+  },
+  {
+    id: 2,
+    category: "algoritmos",
+    categoryLabel: "Algoritmos",
+    title: "Bubble Sort Visualizado",
+    desc: "Implementação do algoritmo Bubble Sort em C com contador de comparações e trocas, exibindo o vetor a cada iteração.",
+    techs: ["C", "Arrays", "Ordenação"],
+    githubUrl: "https://github.com/",
+    longDesc: "Implementação clássica do Bubble Sort com instrumentação: o código conta o número de comparações e trocas realizadas, imprime o estado do vetor após cada passagem, e calcula a complexidade empírica para comparação com O(n²) teórico.",
+    code: `<span class="kw">void</span> <span class="fn">bubbleSort</span><span class="pu">(</span><span class="tp">int</span> v<span class="pu">[],</span> <span class="tp">int</span> n<span class="pu">) {</span>
+  <span class="tp">int</span> trocas <span class="pu">=</span> <span class="nm">0</span><span class="pu">,</span> cmp <span class="pu">=</span> <span class="nm">0</span><span class="pu">;</span>
+  <span class="kw">for</span> <span class="pu">(</span><span class="tp">int</span> i <span class="pu">=</span> <span class="nm">0</span><span class="pu">;</span> i <span class="pu">&lt;</span> n<span class="pu">-</span><span class="nm">1</span><span class="pu">;</span> i<span class="pu">++) {</span>
+    <span class="kw">for</span> <span class="pu">(</span><span class="tp">int</span> j <span class="pu">=</span> <span class="nm">0</span><span class="pu">;</span> j <span class="pu">&lt;</span> n<span class="pu">-</span>i<span class="pu">-</span><span class="nm">1</span><span class="pu">;</span> j<span class="pu">++) {</span>
+      cmp<span class="pu">++;</span>
+      <span class="kw">if</span> <span class="pu">(</span>v<span class="pu">[</span>j<span class="pu">] &gt;</span> v<span class="pu">[</span>j<span class="pu">+</span><span class="nm">1</span><span class="pu">]) {</span>
+        <span class="tp">int</span> tmp <span class="pu">=</span> v<span class="pu">[</span>j<span class="pu">];</span>
+        v<span class="pu">[</span>j<span class="pu">] =</span> v<span class="pu">[</span>j<span class="pu">+</span><span class="nm">1</span><span class="pu">];</span>
+        v<span class="pu">[</span>j<span class="pu">+</span><span class="nm">1</span><span class="pu">] =</span> tmp<span class="pu">;</span>
+        trocas<span class="pu">++;</span>
+      <span class="pu">}</span>
+    <span class="pu">}</span>
+  <span class="pu">}</span>
+  <span class="fn">printf</span><span class="pu">(</span><span class="st">"Cmp: %d | Trocas: %d\\n"</span><span class="pu">,</span> cmp<span class="pu">,</span> trocas);
+<span class="pu">}</span>`
+  },
+  {
+    id: 3,
+    category: "projetos",
+    categoryLabel: "Projetos Finais",
+    title: "Analisador de Circuitos RC",
+    desc: "Projeto final que calcula a resposta transitória de um circuito RC sob uma onda quadrada e salva os dados estruturados em arquivo .txt.",
+    techs: ["C", "Math.h", "File I/O", "Eng. Elétrica"],
+    githubUrl: "https://github.com/",
+    longDesc: "Projeto voltado para Engenharia Elétrica que resolve numericamente a equação diferencial de um circuito RC em série. O programa aceita parâmetros de R, C e frequência, gera os dados de tensão no capacitor ao longo do tempo e os exporta para um arquivo de texto compatível com plotadores como MATLAB ou Excel.",
+    code: `<span class="cm">/* Trecho do Gerador de Dados RC */</span>
+<span class="kw">#include</span> <span class="st">&lt;math.h&gt;</span>
+
+<span class="kw">void</span> <span class="fn">calcularResposta</span><span class="pu">(</span><span class="tp">float</span> R<span class="pu">,</span> <span class="tp">float</span> C<span class="pu">,</span> <span class="tp">float</span> V0<span class="pu">) {</span>
+  <span class="tp">float</span> tau <span class="pu">=</span> R <span class="pu">* C<span class="pu">;</span>
+  <span class="tp">float</span> t<span class="pu">,</span> vc<span class="pu">;</span>
+  FILE <span class="pu">*</span>arq <span class="pu">=</span> <span class="fn">fopen</span><span class="pu">(</span><span class="st">"dados_rc.txt"</span><span class="pu">,</span> <span class="st">"w"</span><span class="pu">);</span>
+
+  <span class="kw">for</span><span class="pu">(</span>t <span class="pu">=</span> <span class="nm">0</span><span class="pu">;</span> t <span class="pu">&lt;</span> <span class="nm">5</span><span class="pu">*</span>tau<span class="pu">;</span> t <span class="pu">+=</span> tau<span class="pu">/</span><span class="nm">10</span><span class="pu">) {</span>
+    vc <span class="pu">=</span> V0 <span class="pu">* (</span><span class="nm">1.0</span> <span class="pu">-</span> <span class="fn">exp</span><span class="pu">(-</span>t<span class="pu">/</span>tau<span class="pu">));</span>
+    <span class="fn">fprintf</span><span class="pu">(</span>arq<span class="pu">,</span> <span class="st">"%.4f\\t%.4f\\n"</span><span class="pu">,</span> t<span class="pu">,</span> vc<span class="pu">);</span>
+  <span class="pu">}</span>
+  <span class="fn">fclose</span><span class="pu">(</span>arq<span class="pu">);</span>
+<span class="pu">}</span>`
+  }
+];
+
+/* ──────────────────────────────────────
+   DYNAMIC CARD RENDERING
+────────────────────────────────────── */
+const grid = document.getElementById('projectsGrid');
+
+function renderProjects(filter = 'todos') {
+  grid.innerHTML = '';
+  
+  const filtered = filter === 'todos' 
+    ? projects 
+    : projects.filter(p => p.category === filter);
+
+  filtered.forEach(p => {
+    const card = document.createElement('div');
+    card.className = `project-card reveal`;
+    card.setAttribute('onclick', `openModal(${p.id})`);
+    
+    const techTags = p.techs.map(t => `<span class="tech-tag">${t}</span>`).join('');
+
+    card.innerHTML = `
+      <div class="card-category cat-${p.category}">${p.categoryLabel}</div>
+      <h3 class="card-title">${p.title}</h3>
+      <p class="card-desc">${p.desc}</p>
+      <div class="card-techs">${techTags}</div>
+      <div class="card-actions">
+        <button class="btn-detail"><i class="fa-solid fa-circle-info"></i> Detalhes</button>
+        <a href="${p.githubUrl}" class="btn-code" onclick="event.stopPropagation();" target="_blank">
+          <i class="fa-brands fa-github"></i> Código
+        </a>
+      </div>
+    `;
+    grid.appendChild(card);
+    
+    setTimeout(() => card.classList.add('visible'), 50);
+  });
+}
+
+/* ──────────────────────────────────────
+   FILTER SYSTEM INTERACTION
+────────────────────────────────────── */
+const filterBtns = document.querySelectorAll('.filter-btn');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    const filterValue = btn.getAttribute('data-filter');
+    renderProjects(filterValue);
+  });
+});
+
+/* ──────────────────────────────────────
+   MODAL INTERACTION LOGIC
+────────────────────────────────────── */
+const overlay = document.getElementById('modalOverlay');
+const mCategory = document.getElementById('mCategory');
+const mTitle = document.getElementById('mTitle');
+const mDesc = document.getElementById('mDesc');
+const mTechs = document.getElementById('mTechs');
+const mCode = document.getElementById('mCode');
+const mBtnCode = document.getElementById('mBtnCode');
+
+function openModal(id) {
+  const proj = projects.find(p => p.id === id);
+  if (!proj) return;
+
+  mCategory.textContent = proj.categoryLabel;
+  mCategory.className = `modal-category cat-${proj.category}`;
+  mTitle.textContent = proj.title;
+  mDesc.textContent = proj.longDesc;
+  mCode.innerHTML = proj.code;
+  
+  mTechs.innerHTML = proj.techs.map(t => `<span class="tech-tag">${t}</span>`).join('');
+  
+  mBtnCode.onclick = () => window.open(proj.githubUrl, '_blank');
+
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('mBtnClose2').addEventListener('click', closeModal);
+
+overlay.addEventListener('click', (e) => {
+  if (e.target === overlay) closeModal();
+});
+
+/* ──────────────────────────────────────
+   SCROLL REVEAL
+────────────────────────────────────── */
+const revealElements = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+revealElements.forEach(el => observer.observe(el));
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderProjects('todos');
+});
+</script>
+</body>
+</html>
