@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio de Algoritmos | Pedro Henrique</title>
+    <!-- Google Fonts: Inter e Fira Code -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==========================================================================
+           1. ESTILOS GERAIS E VARIÁVEIS (TEMA CYBERPUNK DARK)
+           ========================================================================= */
+        :root {
+            --bg-principal: #0a0a0c;
+            --bg-card: #13131a;
+            --cor-destaque: #00e5ff; /* Azul Elétrico */
+            --cor-segunda: #7000ff;   /* Roxo Neon */
+            --cor-destaque-rgb: 0, 229, 255;
+            --texto-principal: #F5F5F7;
+            --texto-secundario: #94a3b8;
+            --borda: #222232;
+            --transicao: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-principal);
+            color: var(--texto-principal);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           2. CABEÇALHO DECORADO (HEADER)
+           ========================================================================= */
+        header {
+            background-color: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--borda);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo i {
+            background: linear-gradient(135deg, var(--cor-destaque), var(--cor-segunda));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.6rem;
+        }
+
+        .materia-tag {
+            background: rgba(0, 229, 255, 0.07);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--cor-destaque);
+            letter-spacing: 0.5px;
+        }
+
+        /* ==========================================================================
+           3. SEÇÃO PRINCIPAL (HERO DECORATIVO)
+           ========================================================================= */
+        .sobre {
+            padding: 7rem 0 4rem 0;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 0%, rgba(112, 0, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 10%, 20%, rgba(0, 229, 255, 0.05) 0%, transparent 40%);
+        }
+
+        .sobre::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cor-destaque), transparent);
+        }
+
+        .sobre h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1.5px;
+            line-height: 1.2;
+        }
+
+        .sobre h1 span {
+            background: linear-gradient(90deg, var(--cor-destaque), #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitulo-materia {
+            font-family: 'Fira Code', monospace;
+            color: var(--texto-secundario);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ==========================================================================
+           4. CARTÃO DE PERFIL DO ACADÊMICO
+           ========================================================================= */
+        .perfil-container {
+            background: linear-gradient(135deg, rgba(19, 19, 26, 0.6), rgba(34, 34, 50, 0.3));
+            border: 1px solid var(--borda);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            margin: 2rem auto 4rem auto;
+            max-width: 700px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .perfil-avatar {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #1e1b4b, #311042);
+            border: 2px solid rgba(0, 229, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: var(--cor-destaque);
+            box-shadow: 0 0 15px rgba(var(--cor-destaque-rgb), 0.2);
+        }
+
+        .perfil-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--texto-principal);
+            margin-bottom: 2px;
+        }
+
+        .perfil-info p {
+            font-size: 0.9rem;
+            color: var(--texto-secundario);
+            display: flex;
+            gap: 15px;
+        }
+
+        .perfil-info p span i {
+            color: var(--cor-destaque);
+            margin-right: 5px;
+        }
+
+        /* ==========================================================================
+           5. GRADE DE TRABALHOS (CARDS DECORADOS)
+           ========================================================================= */
+        .grade-projetos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.2rem;
+            margin-bottom: 6rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--borda);
+            border-radius: 16px;
+            padding: 2.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transicao);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(0, 229, 255, 0.04), transparent 60%);
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(var(--cor-destaque-rgb), 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(var(--cor-destaque-rgb), 0.05);
+        }
+
+        .card-categoria {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #a855f7;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-titulo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            color: var(--texto-principal);
+        }
+
+        .card-desc {
+            color: var(--texto-secundario);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .card-techs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 1.8rem;
+        }
+
+        .tech-tag {
+            background-color: rgba(34, 34, 50, 0.4);
+            border: 1px solid var(--borda);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .btn-detalhes {
+            text-decoration: none;
+            background: linear-gradient(135deg, rgba(34, 34, 50, 0.6), rgba(19, 19, 26, 0.9));
+            color: var(--texto-principal);
+            border: 1px solid var(--borda);
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transicao);
+            width: 100%;
+        }
+
+        .btn-detalhes i {
+            color: #ef4444; /* Vermelho característico do PDF */
+            font-size: 1.1rem;
+        }
+
+        .card:hover .btn-detalhes {
+            background: linear-gradient(135deg, var(--cor-destaque), var(--cor-segunda));
+            border-color: transparent;
+            color: #000;
+            box-shadow: 0 5px 15px rgba(var(--cor-destaque-rgb), 0.3);
+        }
+
+        .card:hover .btn-detalhes i {
+            color: #000;
+        }
+
+        /* ==========================================================================
+           6. RODAPÉ E ANIMAÇÕES
+           ========================================================================= */
+        footer {
+            border-top: 1px solid var(--borda);
+            padding: 2.5rem 0;
+            text-align: center;
+            color: var(--texto-secundario);
+            font-size: 0.85rem;
+            background-color: #070709;
+        }
+
+        footer p span {
+            color: var(--cor-destaque);
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .sobre h1 { font-size: 2.2rem; }
+            .perfil-container { flex-direction: column; text-align: center; padding: 2rem; }
+            .grade-projetos { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fa-solid fa-terminal"></i>
+                <span>PHMM | Portfolio</span>
+            </div>
+            <div class="materia-tag">
+                <i class="fa-solid fa-graduation-cap"></i> Algoritmos e Programação 2026.1
+            </div>
+        </div>
+    </header>
+
+    <!-- SOBRE -->
+    <section class="sobre">
+        <div class="container">
+            <h1>Repositório de <span>Algoritmos</span></h1>
+            <p class="subtitulo-materia">Engenharia Elétrica &bull; Ambiente de Ensaios Computacionais</p>
+            
+            <!-- CARD DE PERFIL DO ALUNO -->
+            <div class="perfil-container">
+                <div class="perfil-avatar">
+                    <i class="fa-solid fa-user-gear"></i>
+                </div>
+                <div class="perfil-info">
+                    <h3>Pedro Henrique Mendes Maciel</h3>
+                    <p>
+                        <span><i class="fa-solid fa-microchip"></i> Engenharia Elétrica</span>
+                        <span><i class="fa-solid fa-calendar-day"></i> Período: 2026.1</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="container">
+        <div class="grade-projetos" id="grade-projetos"></div>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="container">
+            <p>Desenvolvido por <span>Pedro Henrique Mendes Maciel</span> &copy; 2026.1</p>
+            <p style="margin-top: 5px; font-size: 0.75rem; color: #52525b;">Hospedado com integridade total via GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <!-- RENDERIZAÇÃO SPA -->
+    <script>
+        const projects = [
+            {
+                id: 1,
+                categoryLabel: "Exercício Prático",
+                title: "Lista de 15 Exercícios de Listas em Python para Engenharia",
+                desc: "Análise vetorial e filtragem estatística por desvio padrão (µ ± 3σ) em canais de quadratura analógicos I/Q.",
+                techs: ["C", "Sinais I/Q", "Estatística"],
+                link: "./_20260414_lista_15_exercicios_listas_python_engenharia.docx.pdf"
+            },
+            {
+                id: 2,
+                categoryLabel: "Exercício Prático",
+                title: "Lista de 5 Exercícios de Algoritmos",
+                desc: "Estruturas de loop, conversão de telemetria temporal e controle automatizado de fluxos de análise computacional.",
+                techs: ["C", "Loops", "Telemetria", "Automação"],
+                link: "./Documento sem título (1).pdf"
+            },
+            {
+                id: 3,
+                categoryLabel: "Exercício Prático",
+                title: "Trabalho de Programação",
+                desc: "Dimensionamento e modelagem puramente matemática de barramentos elétricos, queda de tensão e eficiência de motores.",
+                techs: ["C", "Eletrotécnica", "Fórmulas"],
+                link: "./Trabalho programação.pdf"
+            },
+            {
+                id: 4,
+                categoryLabel: "Exercício Prático",
+                title: "Escolher e Resolver um Problema de Engenharia",
+                desc: "Resolução e modelagem matemática analítica de Circuitos RLC Série sob regime permanente senoidal.",
+                techs: ["C", "Circuito RLC", "Fasores"],
+                link: "./Escolher e resolver um problema de engenharia.pdf"
+            },
+            {
+                id: 5,
+                categoryLabel: "Exercício Prático",
+                title: "Problemas de Outras Disciplinas - Resolução em Múltiplas Abordagens",
+                desc: "Análise algorítmica comparativa desenvolvendo múltiplas variantes lógicas para estruturas de laços de repetição.",
+                techs: ["C", "Loops Iterativos", "Redundância"],
+                link: "./Problemas de outras disciplinas – resolução em múltiplas abordagens.pdf"
+            },
+            {
+                id: 6,
+                categoryLabel: "Exercício Prático",
+                title: "Lista de 5 Exercícios de Algoritmo",
+                desc: "Implementação matemática para calibração de Pontes de Wheatstone e laudos geotécnicos de solos via coeficientes SPT.",
+                techs: ["C", "Ponde de Wheatstone", "Geotecnia"],
+                link: "./Documento sem título.pdf"
+            },
+            {
+                id: 7,
+                categoryLabel: "Exercício Prático",
+                title: "Gerar as Diferentes Versões do Código até ter Resultados Visuais Interessantes e Consistentes",
+                desc: "Rastreamento evolutivo de logs e versionamento sequencial de rotinas em console terminal.",
+                techs: ["C", "Versionamento", "Terminais"],
+                link: "./Gerar as diferentes versões do código até ter resultados visuais interessantes e consistentes.pdf"
+            }
+        ];
+
+        /* ==========================================================================
+           CONTROLE DE RENDERIZAÇÃO DO PORTFÓLIO
+           ========================================================================= */
+        const gradeProjetos = document.getElementById('grade-projetos');
+
+        function renderCards() {
+            gradeProjetos.innerHTML = projects.map(p => `
+                <div class="card">
+                    <div>
+                        <div class="card-categoria">${p.categoryLabel}</div>
+                        <h3 class="card-titulo">${p.title}</h3>
+                        <p class="card-desc">${p.desc}</p>
+                        <div class="card-techs">
+                            ${p.techs.map(t => `<span class="tech-tag">${t}</span>`).join('')}
+                        </div>
+                    </div>
+                    <a class="btn-detalhes" href="${p.link}" target="_blank">
+                        <i class="fa-solid fa-file-pdf"></i> Abrir Documento PDF
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // Inicialização do Portfólio
+        renderCards();
+    </script>
+</body>
+</html>
